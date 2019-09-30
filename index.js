@@ -36,6 +36,16 @@ server.post('/hub', (req, res) => {
     .catch(() => res.json({message: 'err saving the hub'}))
 })
 
+// DELETE: hubs
+server.delete('/hubs/:id', (req, res) => {
+    // get the id from URL params
+    const id = req.params.id
+
+    hubsModel.remove(id)
+    .then(hub => res.json(hub))
+    .catch(err => res.json({message: "had an issue removing the hub", err: err}))
+})
+
 
 // server port
 const port = 8000;
