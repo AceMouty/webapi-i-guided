@@ -1,5 +1,7 @@
 // import express
 const express = require('express');
+// bring in hubsModel
+const hubsModel = require('./data/hubs-model')
 // create server
 const server = express()
 
@@ -7,7 +9,14 @@ const server = express()
 
 // root route
 server.get("/", (req, res) => {
-    
+    res.send("hello node22")
+})
+
+server.get("/hubs", (req, res) => {
+    // get a list of hubs from the database
+    hubsModel.find()
+    .then(hubs => res.send(hubs))
+    .catch(err => res.send(err))
 })
 
 
